@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Entrega 2 Proyecto Final</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-wEmeIV1mKuiNpC+IOBjI7aAzPcEZeedi5yW5f2yOq55WWLwNGmvvx4Um1vskeMj0" crossorigin="anonymous">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Berkshire+Swash&family=Montserrat:ital,wght@0,100;0,300;0,400;0,500;0,600;0,700;1,100;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+    <link rel="icon" href="assets/img/favicon.ico">
+    <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+    <!-- Encabezado y Menú de Navegación -->
+    <header>
+        <div class="container-fluid">
+            <div class="row">
+                <nav class="navbar navbar-expand-lg navbar-dark miNavColor">
+                    <div class="container-fluid">
+                        <a class="navbar-brand" href="index.html"> <img src="assets/img/logo.png" class="logoNav" alt="Logo"> </a>
+                        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+                        <div class="collapse navbar-collapse justify-content-end" id="navbarNavAltMarkup">
+                            <div class="navbar-nav navFuente">
+                                <a class="nav-link" aria-current="page" href="index.html">INICIO</a>
+                                <a class="nav-link" href="index.html">MAPAS ESTELARES</a>
+                                <a class="nav-link" href="index.html">PREGUNTAS FRECUENTES</a>
+                                <a class="nav-link active" href="index.html">TU MAPA</a>
+                                <a class="nav-link" href="index.html">CONTACTO</a>
+                            </div>
+                        </div>
+                    </div>
+                </nav>
+            </div>
+        </div>
+    </header>
+    <!--Contenido de la página-->
+    <div class="container">
+        <h1>Tu Mapa Estelar</h1>
+        <form id="efecto2" action="">
+            <h2 class="subtitulos-tu-mapa">Ingresá tus Datos Personales</h2>
+            <div class="parrafos-3">
+                <label for="nombre">Nombre:</label>
+                <input type="text" id="nombre" name="nombre">
+            </div>
+            <div class="parrafos-3">
+                <label for="apellido">Apellido:</label>
+                <input type="text" id="apellido" name="apellido">
+            </div>
+            <div class="parrafos-3">
+                <label for="email">Email:</label>
+                <input type="text" id="email" name="email">
+            </div>
+           <div class="enviar">
+                <button class="boton" id="boton1">Continuar</button>
+            </div>
+        </form>
+        <form id="efecto" action="">
+            <h2 class="subtitulos-tu-mapa mb-3">Ingresá los Datos para hacer el Mapa Estelar</h2>
+            <div class="parrafos-3">
+                <label for="tipoIlustracion">Tipo de Ilustración (Artesanal o Digital):</label>
+                <input type="text" id="tipoIlustracion" name="tipoIlustracion">
+                <p class="referencia" id="refTipo">Por favor escrbí tu opción exactamente como está en el paréntesis</p>
+            </div>
+            <div class="parrafos-3">
+                <label for="tamano">Tamaño de la Ilustración (A4, 20x30 ó 30x40):</label>
+                <input type="text" id="tamano" name="tamano">
+                <p class="referencia" id="refTamano">La ilustración Artesanal solo se hace en tamaño A4</p>
+            </div>
+            <div class="enviar">
+                <button class="boton" id="botonEnviar" >Enviar</button>
+            </div>
+        </form>
+    </div>
+    <div class="container" id="efectoTabla">
+        <h3 class="tituloTabla mt-60 mb-3">Resumen de Pedidos</h3>
+        <table class="mb-3" id="tabla">
+            <tr>
+                <th class="col-2">Número de Pedido</th>
+                <th class="col-2">Nombre</th>
+                <th class="col-2">Apellido</th>
+                <th class="col-2">Email</th>
+                <th class="col-2">Tipo de Ilustración</th>
+                <th class="col-2">Tamaño de Ilustración</th>
+                <th class="col-2">Precio</th>
+            </tr>
+        </table>
+    </div>
+    <!-- Pie de Página -->
+    <footer>
+        <div class="container-fluid pie">
+            <div class="row pie-2">
+                <a href="index.html"><img class="footer_logo" src="assets/img/logo.png" alt="Logo"></a>
+                <ul>
+                    <li><img class="email" src="assets/img/email.svg" alt="email"> info@elcieloesedia.com</li>
+                    <li><img class="tele" src="assets/img/telefono.svg" alt="telefono"> +5491112341234</li>
+                </ul>  
+            </div>
+            <div class="mis-redes">
+                <a href="https://es-la.facebook.com/" target="_blank"><img class="redes" src="assets/img/logotipo_circular_facebook.svg" alt="Facebook"></a>
+                <a href="https://www.instagram.com/" target="_blank"><img class="redes" src="assets/img/logotipo_instagram.svg" alt="Instagram"></a>
+                <a href="https://ar.pinterest.com/" target="_blank"><img class="redes" src="assets/img/pinterest.svg" alt="Pinterest"></a>
+            </div>
+            <ul class="footer_lista">
+                <li><a class=footer_lista_texto href="index.html">Inicio</a></li>
+                <li><a class=footer_lista_texto href="index.html">Mapas Estelares</a></li>
+                <li><a class=footer_lista_texto href="index.html">Preguntas Frecuentes</a></li>
+                <li><a class=footer_lista_texto href="index.html">Tu Mapa</a></li>
+                <li><a class=footer_lista_texto href="index.html">Contacto</a></li>
+            </ul>
+        </div>
+        <div class="pie-3">© elCieloeseDía 2021. Todos los derechos reservados</div>
+    </footer>
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous">
+    </script>
+    <script src="assets/app.js"></script>
+</body>
+</html>
