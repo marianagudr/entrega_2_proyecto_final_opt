@@ -1,7 +1,7 @@
 // Entidades
 
 class Pedido {
-    constructor(numeroPedido, nombre, apellido, email, tipo, tamano, precio){
+    constructor(numeroPedido, nombre, apellido, email, tipo, tamano, precio, lugar, fecha, estilo){
         this.numeroPedido = numeroPedido;
         this.nombre = nombre;
         this.apellido = apellido;
@@ -9,6 +9,9 @@ class Pedido {
         this.tipo = tipo;
         this.tamano = tamano;
         this.precio = precio;
+        this.lugar = lugar;
+        this.fecha = fecha;
+        this.estilo = estilo;
     }
 }
 
@@ -30,47 +33,57 @@ function guardarPedido() {
     let email = document.getElementById("email").value;
     let tipo = document.getElementById("tipoIlustracion").value;
     let tamano = document.getElementById("tamano").value;
-    
+    let lugar = document.getElementById("lugar").value;
+    let fecha = document.getElementById("fecha").value;
+    let estilo = document.getElementById("estilo").value;
+
+    let listaPedidos = JSON.parse(localStorage.getItem("pedidos"));
+
     switch (tipo) {
         case "Artesanal":
-            if ((tamano == "A4") || (tamano == "a4")) {
+            if (tamano === "A4") {
                 precio = 6000;
             }
             else {
-                alert("Solo viene en tamaño A4 y su precio es 6000");
-                tamano = "A4";
-                precio = 6000;
+                alert("La ilustración artesanal sólo viene en tamaño A4, ingresar A4");
+                nombre = "Invalido";
+                apellido = "Invalido";
+                email = "Invalido";
+                tipo = "Invalido"
+                tamano = "Invalido";
+                precio = 0;
             }
             break;
         
         case "Digital":
-            if ((tamano == "A4") || (tamano == "a4") || (tamano == "20x30")) {
+            if ((tamano === "A4") || (tamano === "20x30")) {
                 precio = 4000;
             }
-            else if (tamano == "30x40") {
-                precio = 5000;
-            }
             else {
-                alert("Refresque el navegador y vuelva a ingresar los datos, exactamente como está la información entre paréntesis");
+                precio = 5000;
             }
             break;
         
         default:
-            alert("Refresque el navegador y vuelva a ingresar los datos, exactamente como está la información entre paréntesis");
+            alert("Ingrese de nuevo todos los datos que faltan por favor");
+            nombre = "Invalido";
+            apellido = "Invalido";
+            email = "Invalido";
+            tipo = "Invalido"
+            tamano = "Invalido";
+            precio = 0;
     }
-
-    let listaPedidos = JSON.parse(localStorage.getItem("pedidos"));
 
     if (localStorage.getItem("pedidos") != null) {
         let numeroPedido = listaPedidos.length + 1;
-        let pedido = new Pedido(numeroPedido, nombre, apellido, email, tipo, tamano, precio);
+        let pedido = new Pedido(numeroPedido, nombre, apellido, email, tipo, tamano, precio, lugar, fecha, estilo);
         listaPedidos.push(pedido);
         localStorage.setItem("pedidos", JSON.stringify(listaPedidos));
 
     } else {
         localStorage.clear();
         let numeroPedido = 1;
-        let pedido = new Pedido(numeroPedido, nombre, apellido, email, tipo, tamano, precio);
+        let pedido = new Pedido(numeroPedido, nombre, apellido, email, tipo, tamano, precio, lugar, fecha, estilo);
         pedidos.push(pedido);
         localStorage.setItem("pedidos", JSON.stringify(pedidos));
     }
@@ -85,32 +98,45 @@ function imprimirPedido() {
         imprimir.forEach(elemento => {
 
             let td = document.createElement("td");
-            td.setAttribute("class", "col-2");
+            td.setAttribute("class", "col-1");
             td.textContent = `${elemento.numeroPedido}`;
 
             let td1 = document.createElement("td");
-            td1.setAttribute("class", "col-2");
+            td1.setAttribute("class", "col-1");
             td1.textContent = `${elemento.nombre}`;
 
             let td2 = document.createElement("td");
-            td2.setAttribute("class", "col-2");
+            td2.setAttribute("class", "col-1");
             td2.textContent = `${elemento.apellido}`;
             
             let td3 = document.createElement("td");
-            td3.setAttribute("class", "col-2");
+            td3.setAttribute("class", "col-1");
             td3.textContent = `${elemento.email}`;
 
             let td4 = document.createElement("td");
-            td4.setAttribute("class", "col-2");
+            td4.setAttribute("class", "col-1");
             td4.textContent = `${elemento.tipo}`;
 
             let td5 = document.createElement("td");
-            td5.setAttribute("class", "col-2");
+            td5.setAttribute("class", "col-1");
             td5.textContent = `${elemento.tamano}`;
 
             let td6 = document.createElement("td");
-            td6.setAttribute("class", "col-2");
+            td6.setAttribute("class", "col-1");
             td6.textContent = `${elemento.precio}`;
+
+            let td7 = document.createElement("td");
+            td7.setAttribute("class", "col-1");
+            td7.textContent = `${elemento.lugar}`;
+
+            let td8 = document.createElement("td");
+            td8.setAttribute("class", "col-1");
+            td8.textContent = `${elemento.fecha}`;
+
+            let td9 = document.createElement("td");
+            td9.setAttribute("class", "col-1");
+            td9.textContent = `${elemento.estilo}`;
+
 
             let tr = document.createElement("tr");
             tr.appendChild(td);
@@ -120,6 +146,9 @@ function imprimirPedido() {
             tr.appendChild(td4);
             tr.appendChild(td5);
             tr.appendChild(td6);
+            tr.appendChild(td7);
+            tr.appendChild(td8);
+            tr.appendChild(td9);
 
             let impresion = document.getElementById("tabla");
             impresion.appendChild(tr);
@@ -130,13 +159,14 @@ function imprimirPedido() {
     }
     refTamano.style.display = "none";
 }
-  
-function desplegarTexto() {
+
+function desplegarTexto(e) {
+
+    e.preventDefault()
 
     efecto.style.display = "block";   
     refTipo.style.display = "none";
     refTamano.style.display = "none"; 
-    boton1.style.display = "none";
 }
 
 function mostrarRefTipo() {
@@ -151,12 +181,13 @@ function mostrarRefTamano() {
     refTamano.style.display = "block";
 }
 
-function ocultarRefTamano() {
-    refTamano.style.display = "none";
+function ocultarBoton1() {
+    boton1.style.display = "none";
 }
 
 // Eventos
 boton1.addEventListener("click", desplegarTexto);
+boton1.addEventListener("mouseup", ocultarBoton1)
 botonEnviar.addEventListener("click", guardarPedido);
 
 tipoIlustracion.addEventListener("focus", mostrarRefTipo);
@@ -165,7 +196,4 @@ tipoIlustracion.addEventListener("blur", ocultarRefTipo);
 tamano1.addEventListener("focus", mostrarRefTamano);
 
 imprimirPedido();
-
-
-
 

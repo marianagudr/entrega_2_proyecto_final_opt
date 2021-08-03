@@ -34,17 +34,30 @@ h1 {
     font-size: 1rem; 
     padding: 10px;
 }
+#elegirTipo {
+    color: darkgray;
+}
+.estilos {
+    border: solid 0.5px #c4c2c2;
+    border-radius: 5px; 
+}
+  
 .tituloTabla {
     color: #1f6e72;
     font-size: 1.2rem;
     font-family: 'Berkshire Swash', cursive;
     text-align: center;
 }
-th {
+table {
+    border: 1px solid #001836;
+}
+th {
+    border: 1px solid #001836;
     text-align: center;
 }
 td {
-    text-align: left;
+    border: 1px solid #001836;
+    text-align: center;
 }
 .boton {
     background-color: #1f6e72;
@@ -52,6 +65,9 @@ td {
     margin: 20px; 
 }
 #efecto {
+    display: none;
+}
+#efecto3 {
     display: none;
 }
 .enviar {
