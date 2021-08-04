@@ -41,7 +41,6 @@ h1 {
     border: solid 0.5px #c4c2c2;
     border-radius: 5px; 
 }
-  
 .tituloTabla {
     color: #1f6e72;
     font-size: 1.2rem;
@@ -82,7 +81,8 @@ td {
 }
 .referencia {
     color: #ce0a45;
-    font-size: 0.8rem;
+    font-weight: bold;
+    font-size: 0.9rem;
 }
 
 /* Footer*/

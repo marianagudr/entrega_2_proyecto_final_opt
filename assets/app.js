@@ -1,7 +1,7 @@
 // Entidades
 
 class Pedido {
-    constructor(numeroPedido, nombre, apellido, email, tipo, tamano, precio, lugar, fecha, estilo){
+    constructor(numeroPedido, nombre, apellido, email, tipo, tamano, precio, lugar, fecha){
         this.numeroPedido = numeroPedido;
         this.nombre = nombre;
         this.apellido = apellido;
@@ -11,7 +11,6 @@ class Pedido {
         this.precio = precio;
         this.lugar = lugar;
         this.fecha = fecha;
-        this.estilo = estilo;
     }
 }
 
@@ -35,7 +34,6 @@ function guardarPedido() {
     let tamano = document.getElementById("tamano").value;
     let lugar = document.getElementById("lugar").value;
     let fecha = document.getElementById("fecha").value;
-    let estilo = document.getElementById("estilo").value;
 
     let listaPedidos = JSON.parse(localStorage.getItem("pedidos"));
 
@@ -52,6 +50,8 @@ function guardarPedido() {
                 tipo = "Invalido"
                 tamano = "Invalido";
                 precio = 0;
+                lugar = "Inválido";
+                fecha = "Inválido";
             }
             break;
         
@@ -72,18 +72,20 @@ function guardarPedido() {
             tipo = "Invalido"
             tamano = "Invalido";
             precio = 0;
+            lugar = "Inválido";
+            fecha = "Inválido";
     }
 
     if (localStorage.getItem("pedidos") != null) {
         let numeroPedido = listaPedidos.length + 1;
-        let pedido = new Pedido(numeroPedido, nombre, apellido, email, tipo, tamano, precio, lugar, fecha, estilo);
+        let pedido = new Pedido(numeroPedido, nombre, apellido, email, tipo, tamano, precio, lugar, fecha);
         listaPedidos.push(pedido);
         localStorage.setItem("pedidos", JSON.stringify(listaPedidos));
 
     } else {
         localStorage.clear();
         let numeroPedido = 1;
-        let pedido = new Pedido(numeroPedido, nombre, apellido, email, tipo, tamano, precio, lugar, fecha, estilo);
+        let pedido = new Pedido(numeroPedido, nombre, apellido, email, tipo, tamano, precio, lugar, fecha);
         pedidos.push(pedido);
         localStorage.setItem("pedidos", JSON.stringify(pedidos));
     }
@@ -133,11 +135,6 @@ function imprimirPedido() {
             td8.setAttribute("class", "col-1");
             td8.textContent = `${elemento.fecha}`;
 
-            let td9 = document.createElement("td");
-            td9.setAttribute("class", "col-1");
-            td9.textContent = `${elemento.estilo}`;
-
-
             let tr = document.createElement("tr");
             tr.appendChild(td);
             tr.appendChild(td1);
@@ -148,7 +145,6 @@ function imprimirPedido() {
             tr.appendChild(td6);
             tr.appendChild(td7);
             tr.appendChild(td8);
-            tr.appendChild(td9);
 
             let impresion = document.getElementById("tabla");
             impresion.appendChild(tr);
@@ -165,16 +161,7 @@ function desplegarTexto(e) {
     e.preventDefault()
 
     efecto.style.display = "block";   
-    refTipo.style.display = "none";
     refTamano.style.display = "none"; 
-}
-
-function mostrarRefTipo() {
-    refTipo.style.display = "block";
-}
-
-function ocultarRefTipo() {
-    refTipo.style.display = "none";
 }
 
 function mostrarRefTamano() {
@@ -190,10 +177,6 @@ boton1.addEventListener("click", desplegarTexto);
 boton1.addEventListener("mouseup", ocultarBoton1)
 botonEnviar.addEventListener("click", guardarPedido);
 
-tipoIlustracion.addEventListener("focus", mostrarRefTipo);
-tipoIlustracion.addEventListener("blur", ocultarRefTipo);
-
 tamano1.addEventListener("focus", mostrarRefTamano);
 
 imprimirPedido();
-
